@@ -30,6 +30,12 @@ class Emprendimientos(db.Model):
         self.lat = lat
         self.lon = lon
 
+    def __str__(self):
+        return print(f'Emprendimiento: {self.nombre} Descripcion: {self.descripcion} Contacto: {self.contacto} Latitud: {self.lat} Longitud: {self.lon}')
+
+    def __repr__(self):
+        return print(f'Emprendimientos(nombre={self.nombre}, descripcion={self.descipciom}, contacto={self.contacto},lat={self.lat},lon={self.lon})')
+
 # definimos la ruta de la aplicacion
 @app.route('/')
 def index():
