@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_43063b745343a83b959d87b9be7ea680 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_43063b745343a83b959d87b9be7ea680" ></div>
+        
+</body>
+<script>    
+    
+            var map_43063b745343a83b959d87b9be7ea680 = L.map(
+                "map_43063b745343a83b959d87b9be7ea680",
+                {
+                    center: [-25.302223289426216, -57.58111798774653],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_a528c6ce9072fa9a10d0bdf576843584 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_43063b745343a83b959d87b9be7ea680);
+        
+    
+            var marker_4e2e65798c0640a5b90c684fcb1e48c5 = L.marker(
+                [-25.29205995881709, -57.589409617130585],
+                {}
+            ).addTo(map_43063b745343a83b959d87b9be7ea680);
+        
+    
+        var popup_94b8402775fa182253716019e09cce64 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7fd10d2634a6efb7a32b7c2cb1d2f020 = $(`<div id="html_7fd10d2634a6efb7a32b7c2cb1d2f020" style="width: 100.0%; height: 100.0%;">                 <h2>Hola</h2>                 <p>Soy un emprendimiento </p>                 <p>Tel.: 0985123321</p>             </div>`)[0];
+            popup_94b8402775fa182253716019e09cce64.setContent(html_7fd10d2634a6efb7a32b7c2cb1d2f020);
+        
+
+        marker_4e2e65798c0640a5b90c684fcb1e48c5.bindPopup(popup_94b8402775fa182253716019e09cce64)
+        ;
+
+        
+    
+    
+            var marker_469b3bfac380603e41b1874148838114 = L.marker(
+                [-25.29197282912776, -57.60341107452547],
+                {}
+            ).addTo(map_43063b745343a83b959d87b9be7ea680);
+        
+    
+        var popup_9a337d68f425605c1dc85a2530c8fba7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_13b3bd49a8d89f173d8573ed1027860f = $(`<div id="html_13b3bd49a8d89f173d8573ed1027860f" style="width: 100.0%; height: 100.0%;">                 <h2>Gomeria</h2>                 <p>Venta de gomas</p>                 <p>Tel.: 0985345678</p>             </div>`)[0];
+            popup_9a337d68f425605c1dc85a2530c8fba7.setContent(html_13b3bd49a8d89f173d8573ed1027860f);
+        
+
+        marker_469b3bfac380603e41b1874148838114.bindPopup(popup_9a337d68f425605c1dc85a2530c8fba7)
+        ;
+
+        
+    
+    
+            var marker_e1cc1daedac0b159052b92c19473dcbb = L.marker(
+                [-25.30015726226854, -57.582480549935525],
+                {}
+            ).addTo(map_43063b745343a83b959d87b9be7ea680);
+        
+    
+        var popup_372be1af07c1403519afa97dc9dc0719 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b379c032e00907c4c37d92b6154011a2 = $(`<div id="html_b379c032e00907c4c37d92b6154011a2" style="width: 100.0%; height: 100.0%;">                 <h2>Verduleria, La verdura anarquista</h2>                 <p>Vendemos verduras para desestructurar al sistema</p>                 <p>Tel.: 098654253</p>             </div>`)[0];
+            popup_372be1af07c1403519afa97dc9dc0719.setContent(html_b379c032e00907c4c37d92b6154011a2);
+        
+
+        marker_e1cc1daedac0b159052b92c19473dcbb.bindPopup(popup_372be1af07c1403519afa97dc9dc0719)
+        ;
+
+        
+    
+    
+            var marker_9779aaf48fc971ad3af925cba4c14318 = L.marker(
+                [-25.302223289426216, -57.58111798774653],
+                {}
+            ).addTo(map_43063b745343a83b959d87b9be7ea680);
+        
+    
+        var popup_953762d983c47b9dbe28ee091504b89e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7345c984315c7b0704f22ff4639e4781 = $(`<div id="html_7345c984315c7b0704f22ff4639e4781" style="width: 100.0%; height: 100.0%;">                 <h2>Penguin House 2.0</h2>                 <hr>                 <img src="static/img/penguin_house.jpeg" width="250px">                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quidem, ipsa, quis, saepe, ipsam, obcaecati, quos, ipsum, quas, dolorem, aliquam.</p>                 <h3>Servicios:</h3>                 <ul>                     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>                     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>                     <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>                 </ul>                  <hr>                 <a href="#">WhatsApp</a>              </div>`)[0];
+            popup_953762d983c47b9dbe28ee091504b89e.setContent(html_7345c984315c7b0704f22ff4639e4781);
+        
+
+        marker_9779aaf48fc971ad3af925cba4c14318.bindPopup(popup_953762d983c47b9dbe28ee091504b89e)
+        ;
+
+        
+    
+    
+            marker_9779aaf48fc971ad3af925cba4c14318.bindTooltip(
+                `<div>
+                     Penguin House 2.0
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
