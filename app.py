@@ -50,7 +50,7 @@ def mapa():
     #creacion del mapa
     mapa = folium.Map(location=coor_mapa, zoom_start=12)
 
-    # creacion de los marcadores
+    # creacion de los marcadoress
 
     emprendimientos = Emprendimientos.query.all()
     for emprendimiento in emprendimientos:
