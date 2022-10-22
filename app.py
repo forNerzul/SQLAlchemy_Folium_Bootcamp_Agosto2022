@@ -50,7 +50,7 @@ def mapa():
     #creacion del mapa
     mapa = folium.Map(location=coor_mapa, zoom_start=12)
 
-    # creacion de los marcadoress
+    # creacion de los marcadores
 
     emprendimientos = Emprendimientos.query.all()
     for emprendimiento in emprendimientos:
@@ -113,7 +113,11 @@ def borrar(id):
     db.session.commit()
 
     return redirect(url_for('emprendimientos'))
-    
+
+
+# con esta condicion no necesitamos ejecutar flask run y le decimos que inicie la aplicacion en modo debug    
 if __name__ == '__main__':
+    # creamos la base de datos al darle "python3 app.py"
     db.create_all()
+    # iniciamos la aplicacion en modo debug para que se reinicie automaticamente cuando guardamos cambios
     app.run(debug=True)
