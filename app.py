@@ -114,6 +114,33 @@ def borrar(id):
 
     return redirect(url_for('emprendimientos'))
 
+@app.route('/geo')
+def geo():
+    # variables de coordenadas
+    coor_mapa = [-25.302223289426216, -57.58111798774653]
+    geojson = r'./static/geojson/paraguay.json'
+
+    #creacion del mapa
+    mapa = folium.Map(location=coor_mapa, zoom_start=6)
+
+    mapa.get_root().html.add_child(folium.Element('<h1>Mapa de Paraguay</h1>'))
+    mapa.get_root().html.add_child(folium.Element('<p>Este mapa muestra los departamentos de Paraguay</p>'))
+
+    geo_object = folium.GeoJson(
+        geojson, 
+        name="paraguay"
+    ).add_to(mapa)
+
+    folium.GeoJsonTooltip(
+        fields=["Departamento", "Numero"]
+    ).add_to(geo_object)
+
+    # guardamos el mapa en un archivo html
+    mapa.save('templates/geo.html')
+
+    return render_template('geo.html')
+
+
 
 # con esta condicion no necesitamos ejecutar flask run y le decimos que inicie la aplicacion en modo debug    
 if __name__ == '__main__':
