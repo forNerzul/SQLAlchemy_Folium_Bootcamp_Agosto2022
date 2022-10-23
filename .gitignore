@@ -2,3 +2,4 @@ venv
 db.sqlite3
 "Icon\r"
 .DS_Store
+**/.DS_Store
