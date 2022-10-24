@@ -1,6 +1,7 @@
 # importamos las librerias necesarias
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
+from geopy.geocoders import Nominatim
 import folium
 
 
@@ -22,13 +23,21 @@ class Emprendimientos(db.Model):
     contacto = db.Column(db.String(10), nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lon = db.Column(db.Float, nullable=False)
+    ciudad = db.Column(db.String(80))
+    estado = db.Column(db.String(80))
+    region = db.Column(db.String(80))
+    barrio = db.Column(db.String(80))
 
-    def __init__(self, nombre, descripcion, contacto, lat, lon):
+    def __init__(self, nombre, descripcion, contacto, lat, lon, ciudad, estado, region, barrio):
         self.nombre = nombre
         self.descripcion = descripcion
         self.contacto = contacto
         self.lat = lat
         self.lon = lon
+        self.ciudad = ciudad
+        self.estado = estado
+        self.region = region
+        self.barrio = barrio
 
     def __str__(self):
         return print(f'Emprendimiento: {self.nombre} Descripcion: {self.descripcion} Contacto: {self.contacto} Latitud: {self.lat} Longitud: {self.lon}')
@@ -58,6 +67,11 @@ def mapa():
                 <h2>{emprendimiento.nombre}</h2>
                 <p>{emprendimiento.descripcion}</p>
                 <p>Tel.: {emprendimiento.contacto}</p>
+                <h2>Información:</h2>
+                <p>Ciudad: { emprendimiento.ciudad }</p>
+                <p>Estado: { emprendimiento.estado }</p>
+                <p>Region: { emprendimiento.region }</p>
+                <p>Barrio: { emprendimiento.barrio }</p>
             ''').add_to(mapa)
 
     folium.Marker(
@@ -95,7 +109,22 @@ def registro():
         lat = request.form['latitud']
         lon = request.form['longitud']
 
-        emprendimiento = Emprendimientos(nombre, descripcion, contacto, lat, lon)
+
+        geolocator = Nominatim(user_agent="Penguin Academy")
+        location = geolocator.reverse(lat + "," + lon)
+        
+        
+        address = location.raw['address']
+
+        
+        ciudad = address.get('city', '')
+        estado = address.get('state', '')
+        region = address.get('region', '')
+        barrio = address.get('neighbourhood', '')
+
+
+        emprendimiento = Emprendimientos(nombre, descripcion, contacto, lat, lon,ciudad, estado, region, barrio)
+
         db.session.add(emprendimiento) # agregamos el emprendimiento a la base de datos
         db.session.commit()# guardamos los cambios en la base de datos
 
