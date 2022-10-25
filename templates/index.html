@@ -1,9 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <title>Holis</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Taller Feliz (Recargado)</title>
 </head>
 <body>
-    <h1>Hola Mundo desde render template</h1>
+    <nav class="flex justify-center m-10">
+        <div class="flex flex-row gap-4 container logo">
+            <img src="https://www.svgrepo.com/show/129247/clown.svg" height="150" width="150" alt="Taller Feliz Logo">
+            <span>Taller Feliz! (Recargado)</span>
+        </div>
+        <ul class="flex flex-row gap-5">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Ver Mapa</a></li>
+            <li><a href="#">Ver Mapa (Filtrado)</a></li>
+            <li><a href="#">Crear Marcador</a></li>
+            <li><a href="#">Eliminar Marcador</a></li>
+        </ul>
+    </nav>
+    <h1>Bienvenido a Taller Feliz (Recargado)</h1>
+    <h2>¿Que es esto?</h2>
+    <p>
+        Esto es un ejercicio de las siguientes tecnologías:
+        <ul>
+            <li>Python</li>
+            <li>geopy</li>
+            <li>Flask</li>
+            <li>SQLAlchemy</li>
+            <li>Folium</li>
+            <li>HTML</li>
+            <li>Tailwind CSS</li>
+            <li>Un poquito de JavaScript</li>
+        </ul>
+    </p>
+    <h2>¿Que se supone que hace?</h2>
+    <p>
+        Nos permite mediante un formulario seleccionar un punto en el mapa y cargar datos de una ubicación para guardar posteriormente a una base de datos, para mostrar un mapa con todos los puntos cargados, y otro mapa con un filtro de puntos por categoría
+    </p>
 </body>
 </html>

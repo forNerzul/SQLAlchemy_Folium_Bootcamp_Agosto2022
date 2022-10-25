@@ -179,23 +179,23 @@ def vista_mapas():
     mapa = folium.Map(location=coor_mapa, zoom_start=12)
     if request.method == 'POST':
         categoria_form = request.form['categoria']
-        emprendimientos = Emprendimientos.query.all()
-
+        consultar_emprendimientos = db.session.query(Emprendimientos)
+        filtro_por_categoria = Emprendimientos.categoria == categoria_form
+        emprendimientos = consultar_emprendimientos.filter(filtro_por_categoria).all()
 
         for emprendimiento in emprendimientos:
-            if emprendimiento.categoria == categoria_form:
-                coor_marcador= [emprendimiento.lat, emprendimiento.lon]
-                folium.Marker(location=coor_marcador, popup=f'''
-                <h2>{emprendimiento.nombre}</h2>
-                <p>{emprendimiento.descripcion}</p>
-                <p>Tel.: {emprendimiento.contacto}</p>
-                <h2>Información:</h2>
-                <p>Ciudad: { emprendimiento.ciudad }</p>
-                <p>Estado: { emprendimiento.estado }</p>
-                <p>Region: { emprendimiento.region }</p>
-                <p>Barrio: { emprendimiento.barrio }</p>
-                <p>Categoria: { emprendimiento.categoria }</p>
-            ''').add_to(mapa)
+            coor_marcador= [emprendimiento.lat, emprendimiento.lon]
+            folium.Marker(location=coor_marcador, popup=f'''
+            <h2>{emprendimiento.nombre}</h2>
+            <p>{emprendimiento.descripcion}</p>
+            <p>Tel.: {emprendimiento.contacto}</p>
+            <h2>Información:</h2>
+            <p>Ciudad: { emprendimiento.ciudad }</p>
+            <p>Estado: { emprendimiento.estado }</p>
+            <p>Region: { emprendimiento.region }</p>
+            <p>Barrio: { emprendimiento.barrio }</p>
+            <p>Categoria: { emprendimiento.categoria }</p>
+        ''').add_to(mapa)
 
     mapa.save('templates/marcadores.html')
         
