@@ -27,8 +27,9 @@ class Emprendimientos(db.Model):
     estado = db.Column(db.String(80))
     region = db.Column(db.String(80))
     barrio = db.Column(db.String(80))
+    categoria = db.Column(db.String(80))
 
-    def __init__(self, nombre, descripcion, contacto, lat, lon, ciudad, estado, region, barrio):
+    def __init__(self, nombre, descripcion, contacto, lat, lon, ciudad, estado, region, barrio, categoria):
         self.nombre = nombre
         self.descripcion = descripcion
         self.contacto = contacto
@@ -38,12 +39,14 @@ class Emprendimientos(db.Model):
         self.estado = estado
         self.region = region
         self.barrio = barrio
+        self.categoria = categoria
 
-    def __str__(self):
-        return print(f'Emprendimiento: {self.nombre} Descripcion: {self.descripcion} Contacto: {self.contacto} Latitud: {self.lat} Longitud: {self.lon}')
+    # Este no sirve para nada (Jaz 2022)
+    # def __str__(self):
+    #     return print(f'Emprendimiento: {self.nombre} Descripcion: {self.descripcion} Contacto: {self.contacto} Latitud: {self.lat} Longitud: {self.lon}')
 
-    def __repr__(self):
-        return print(f'Emprendimientos(nombre={self.nombre}, descripcion={self.descipciom}, contacto={self.contacto},lat={self.lat},lon={self.lon})')
+    # def __repr__(self):
+    #     return print(f'Emprendimientos(nombre={self.nombre}, descripcion={self.descripcion}, contacto={self.contacto},lat={self.lat},lon={self.lon})')
 
 # definimos la ruta de la aplicacion
 @app.route('/')
@@ -108,6 +111,7 @@ def registro():
         contacto = request.form['contacto']
         lat = request.form['latitud']
         lon = request.form['longitud']
+        categoria = request.form['categoria']
 
 
         geolocator = Nominatim(user_agent="Penguin Academy")
@@ -123,7 +127,7 @@ def registro():
         barrio = address.get('neighbourhood', '')
 
 
-        emprendimiento = Emprendimientos(nombre, descripcion, contacto, lat, lon,ciudad, estado, region, barrio)
+        emprendimiento = Emprendimientos(nombre, descripcion, contacto, lat, lon,ciudad, estado, region, barrio, categoria)
 
         db.session.add(emprendimiento) # agregamos el emprendimiento a la base de datos
         db.session.commit()# guardamos los cambios en la base de datos
@@ -168,6 +172,38 @@ def geo():
     mapa.save('templates/geo.html')
 
     return render_template('geo.html')
+    
+@app.route("/vista_mapas", methods=['GET','POST'])
+def vista_mapas():
+    coor_mapa = [-25.302223289426216, -57.58111798774653]
+    mapa = folium.Map(location=coor_mapa, zoom_start=12)
+    if request.method == 'POST':
+        categoria_form = request.form['categoria']
+        emprendimientos = Emprendimientos.query.all()
+
+
+        for emprendimiento in emprendimientos:
+            if emprendimiento.categoria == categoria_form:
+                coor_marcador= [emprendimiento.lat, emprendimiento.lon]
+                folium.Marker(location=coor_marcador, popup=f'''
+                <h2>{emprendimiento.nombre}</h2>
+                <p>{emprendimiento.descripcion}</p>
+                <p>Tel.: {emprendimiento.contacto}</p>
+                <h2>Información:</h2>
+                <p>Ciudad: { emprendimiento.ciudad }</p>
+                <p>Estado: { emprendimiento.estado }</p>
+                <p>Region: { emprendimiento.region }</p>
+                <p>Barrio: { emprendimiento.barrio }</p>
+                <p>Categoria: { emprendimiento.categoria }</p>
+            ''').add_to(mapa)
+
+    mapa.save('templates/marcadores.html')
+        
+    return render_template('vistas.html')
+
+@app.route('/marcadores')
+def marcadores():
+    return render_template('marcadores.html')
 
 
 
